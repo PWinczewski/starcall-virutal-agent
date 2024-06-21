@@ -1,4 +1,4 @@
-import random
+
 import functions_starcall as func
 from game_config import *
 
@@ -63,7 +63,7 @@ class Player(Creature):
         self.rotation_spd = 1.5
         self.hitbox = (-4, -2, 9, 9)
         self.hitbox_rect = self.update_hitbox_rect(self.hitbox)
-        self.hitbox_attack = (-1, 21, 3, 3)
+        self.hitbox_attack = (-1, 0, 3, 24)
         self.hitbox_attack_rect = self.update_hitbox_rect(self.hitbox_attack)
 
     def accelerate_horizontally(self, direction):
@@ -95,13 +95,13 @@ class Player(Creature):
 
 
 class Enemy(Creature):
-    def __init__(self, x, y):
+    def __init__(self, x, y, facing):
         super().__init__(x, y)
         self.vspd = scroll_speed
         self.sprite = spr_ENEMY_EYEBAT
-        self.frame = random.randint(0, len(self.sprite) - 1)
+        self.frame = 0
         self.active_image = spr_ENEMY_EYEBAT[self.frame]
-        self.facing = random.choice([LEFT, RIGHT])
+        self.facing = facing
         self.hspd = 1 * self.facing
         self.anim_clock = 0
         self.anim_speed = 6
